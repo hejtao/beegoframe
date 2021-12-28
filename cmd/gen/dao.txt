@@ -1,0 +1,330 @@
+// Package dao
+// ===========================
+// This file is auto-generated
+// ===========================
+package dao
+
+import (
+	"{PROJECT_NAME}/app/dao/internal"
+	"{PROJECT_NAME}/app/model"
+	"{PROJECT_NAME}/pkg/encoding/json"
+	"time"
+)
+type {LOWER_ENTITY_NAME}Dao struct {
+	setter internal.QuerySetter
+	tx Tx
+    data interface{}
+	table string
+	Fields *{LOWER_ENTITY_NAME}Fields
+}
+{DAO_FIELDS_DEF}
+{DAO_FIELDS_INIT}
+
+func (r *{LOWER_ENTITY_NAME}Dao) GetTable() string {
+	return r.table
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) Filter(expr string, args ...interface{}) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.Filter(expr, args...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) FilterRaw(expr string, arg string) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.FilterRaw(expr, arg),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) Exclude(expr string, args ...interface{}) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.Exclude(expr, args...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) SetCond(cond *internal.Condition) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.SetCond(cond.Condition),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) GetCond() *internal.Condition {
+	return &internal.Condition{Condition: r.setter.GetCond()}
+}
+
+// Pagination set the limit and offset for the dao
+func (r *{LOWER_ENTITY_NAME}Dao) Pagination(pageNum, pageSize int) *{LOWER_ENTITY_NAME}Dao {
+	if pageNum < 1 {
+		pageNum = 1
+	}
+	if pageSize < 1 {
+		pageSize = 10
+	}
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.Limit(pageSize).Offset((pageNum - 1) * pageSize),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) GroupBy(expr ...internal.Field) *{LOWER_ENTITY_NAME}Dao {
+	var fields []string
+	for _, v := range expr {
+		fields = append(fields, string(v))
+	}
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.GroupBy(fields...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) OrderBy(expr ...internal.Field) *{LOWER_ENTITY_NAME}Dao {
+	var fields []string
+	for _, v := range expr {
+		fields = append(fields, string(v))
+	}
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.OrderBy(fields...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) ForceIndex(indexes ...string) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.ForceIndex(indexes...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) UseIndex(indexes ...string) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.UseIndex(indexes...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) IgnoreIndex(indexes ...string) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.IgnoreIndex(indexes...),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) Distinct() *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.Distinct(),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) ForUpdate() *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter.ForUpdate(),
+		tx:     r.tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) Count() (int64, error) {
+	return r.setter.Count()
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) Exist() bool {
+	return r.setter.Exist()
+}
+
+// SetData set the data for the dao update or insert
+func (r *{LOWER_ENTITY_NAME}Dao) SetData(data interface{}) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter,
+		tx:     r.tx,
+		data:   data,
+		Fields: r.Fields,
+	}
+}
+
+// SetTx set the transaction for the dao
+func (r *{LOWER_ENTITY_NAME}Dao) SetTx(tx internal.Tx) *{LOWER_ENTITY_NAME}Dao {
+	return &{LOWER_ENTITY_NAME}Dao{
+		setter: r.setter,
+		tx:     tx,
+		data:   r.data,
+		Fields: r.Fields,
+	}
+}
+
+// Update is the dao update operation, the transaction param is optional
+func (r *{LOWER_ENTITY_NAME}Dao) Update() (int64, error) {
+	cond := r.setter.GetCond()
+	if cond == nil || cond.IsEmpty() {
+		return 0, errUpdateWithEmptyCond
+	}
+	row := internal.NewRow()
+	if err := json.Convert(r.data, &row); err != nil {
+		return 0, err
+	}
+	if len(row) == 0 {
+		return 0, errUpdateWithEmptyData
+	}
+	delete(row, string(r.Fields.Id))
+	row[string(r.Fields.UpdateTime)] = time.Now()
+	if r.tx != nil {
+		return r.tx.QueryTable((*model.{ENTITY_NAME})(nil)).SetCond(cond).Update(row)
+	}
+	return r.setter.Update(row)
+}
+
+// Delete is the dao delete operation, the transaction param is optional
+func (r *{LOWER_ENTITY_NAME}Dao) Delete() (int64, error) {
+	cond := r.setter.GetCond()
+	if cond == nil || cond.IsEmpty() {
+		return 0, errDeleteWithEmptyCond
+	}
+	if r.tx != nil {
+		return r.tx.QueryTable((*model.{ENTITY_NAME})(nil)).SetCond(cond).Delete()
+	}
+	return r.setter.Delete()
+}
+
+// Insert is the dao insert operation, the transaction param is optional
+func (r *{LOWER_ENTITY_NAME}Dao) Insert() (int64, error) {
+	if _, ok := r.data.(*model.{ENTITY_NAME}); !ok {
+		var row model.{ENTITY_NAME}
+		if err := json.Convert(r.data, &row); err != nil {
+			return 0, err
+		}
+		r.data = &row
+	}
+	if r.data == nil {
+		return 0, errInsertWithEmptyData
+	}
+	if r.tx != nil {
+		return r.tx.Insert(r.data)
+	}
+	return internal.DB.Insert(r.data)
+}
+
+// FirstRow queries the first row data
+// container is map[string]interface{}, all fields are selected
+// container is *struct, the struct json tags specify the selected fields
+func (r *{LOWER_ENTITY_NAME}Dao) FirstRow(container interface{}) error {
+	if err := checkPtr(container); err != nil {
+		return err
+	}
+	cond := r.setter.GetCond()
+	if cond == nil || cond.IsEmpty() {
+		return errQueryWithEmptyCond
+	}
+	tags := getJsonTags(container)
+	rows := internal.NewRows()
+	if _, err := r.setter.Limit(1).Values(&rows, tags...); err != nil {
+		return err
+	}
+	if len(rows) == 0 {
+		return errQueryRowNotFound
+	}
+	if err := json.Convert(rows[0], container); err != nil {
+		return err
+	}
+	return nil
+}
+
+// LastRow queries the last row data
+// container is map[string]interface{}, all fields are selected
+// container is *struct, the struct json tags specify the selected fields
+func (r *{LOWER_ENTITY_NAME}Dao) LastRow(container interface{}) error {
+	if err := checkPtr(container); err != nil {
+		return err
+	}
+	cond := r.setter.GetCond()
+	if cond == nil || cond.IsEmpty() {
+		return errQueryWithEmptyCond
+	}
+	tags := getJsonTags(container)
+	rows := internal.NewRows()
+	if _, err := r.setter.Limit(1).OrderBy(string(r.Fields.Id.Desc())).Values(&rows, tags...); err != nil {
+		return err
+	}
+	if len(rows) == 0 {
+		return errQueryRowNotFound
+	}
+	if err := json.Convert(rows[0], container); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Rows query multiple rows data
+// container is []map[string]interface{}, all fields are selected
+// container is []struct or []*struct, the struct json tags specify the selected fields
+func (r *{LOWER_ENTITY_NAME}Dao) Rows(container interface{}) (int64, error) {
+	if err := checkSlicePtr(container); err != nil {
+		return 0, err
+	}
+	cond := r.setter.GetCond()
+	if cond == nil || cond.IsEmpty() {
+		return 0, errQueryWithEmptyCond
+	}
+	tags := getJsonTags(container)
+	rows := internal.NewRows()
+	n, err := r.setter.Values(&rows, tags...)
+	if err != nil {
+		return 0, err
+	}
+	if err := json.Convert(rows, container); err != nil {
+		return 0, err
+	}
+	return n, nil
+}
+
+// Column query one column data
+func (r *{LOWER_ENTITY_NAME}Dao) Column(field internal.Field) []interface{} {
+	column := internal.NewColumn()
+	cond := r.setter.GetCond()
+	if cond != nil && !cond.IsEmpty() {
+		r.setter.ValuesFlat(&column, string(field))
+	}
+	return column
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) LeftJoin(d Dao, alias string) *onBuilder {
+	table := d.GetTable()
+	return &onBuilder{
+		alias: alias,
+		builder: internal.NewQueryBuilder().From(r.table + " T0").
+			LeftJoin(table + " " + alias)}
+}
+
+func (r *{LOWER_ENTITY_NAME}Dao) InnerJoin(d Dao, alias string) *onBuilder {
+	table := d.GetTable()
+	return &onBuilder{
+		alias: alias,
+		builder: internal.NewQueryBuilder().From(r.table + " T0").
+			InnerJoin(table + " " + alias)}
+}

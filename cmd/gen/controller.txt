@@ -1,0 +1,45 @@
+package controller
+
+import (
+	"{PROJECT_NAME}/app/shared"
+	"{PROJECT_NAME}/app/system/index/internal/service"
+)
+
+var {ENTITY_NAME} = new({LOWER_ENTITY_NAME}Controller)
+
+type {LOWER_ENTITY_NAME}Controller struct {
+	shared.Controller
+}
+
+func (c *{LOWER_ENTITY_NAME}Controller) Post() {
+	if err := service.{ENTITY_NAME}.Create(); err != nil {
+		c.SetResp(shared.Hc500, err.Error(), nil)
+	} else {
+		c.SetResp(shared.Hc200, "", nil)
+	}
+}
+
+func (c *{LOWER_ENTITY_NAME}Controller) Get() {
+	list, err := service.{ENTITY_NAME}.Get()
+	if err != nil {
+		c.SetResp(shared.Hc500, err.Error(), nil)
+	} else {
+		c.SetResp(shared.Hc200, "", list)
+	}
+}
+
+func (c *{LOWER_ENTITY_NAME}Controller) Put() {
+	if err := service.{ENTITY_NAME}.Update(); err != nil {
+		c.SetResp(shared.Hc500, err.Error(), nil)
+	} else {
+		c.SetResp(shared.Hc200, "", nil)
+	}
+}
+
+func (c *{LOWER_ENTITY_NAME}Controller) Delete() {
+	if err := service.{ENTITY_NAME}.Delete(); err != nil {
+		c.SetResp(shared.Hc500, err.Error(), nil)
+	} else {
+		c.SetResp(shared.Hc200, "", nil)
+	}
+}

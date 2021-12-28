@@ -1,0 +1,21 @@
+package service
+
+var {ENTITY_NAME} = new({LOWER_ENTITY_NAME}Service)
+
+type {LOWER_ENTITY_NAME}Service struct{}
+
+func (s *{LOWER_ENTITY_NAME}Service) Create() error {
+	return nil
+}
+
+func (s *{LOWER_ENTITY_NAME}Service) Delete() error {
+	return nil
+}
+
+func (s *{LOWER_ENTITY_NAME}Service) Update() error {
+	return nil
+}
+
+func (s *{LOWER_ENTITY_NAME}Service) Get() (interface{}, error) {
+	return nil, nil
+}

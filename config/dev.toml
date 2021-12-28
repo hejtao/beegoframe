@@ -1,0 +1,28 @@
+# Front desk service
+[index_server]
+    enable = true
+    address = "localhost"
+	port = 8080
+	jwt_key = "index-jwt-key"
+
+# Back desk administration
+[admin_server]
+    enable = false
+    address = "localhost"
+	port = 8081
+	jwt_key = "admin-jwt-key"
+
+[database]
+    address  = "root:eduyibo2016@tcp(120.78.143.216:3306)/temp?charset=utf8mb4&loc=Asia%2FShanghai"
+    sync = true # enable synchronization from model to database table
+    debug = true # terminal print SQL log
+
+[cache]
+    address  = "redis"
+
+[es]
+    address  = "http://127.0.0.1:9200/"
+    username = "elastic"
+    password = "password"
+    prefix = "beegoframe_"
+
